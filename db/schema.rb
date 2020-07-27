@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2020_11_23_184413) do
     t.integer "view_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_news_articles_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
