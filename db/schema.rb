@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_11_23_184413) do
     t.boolean "admin", default: false
   end
 
+  add_foreign_key "news_articles", "users"
   add_foreign_key "products", "users"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
