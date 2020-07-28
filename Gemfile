@@ -21,7 +21,6 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 # Used for authorization and to set up ability.rb
 gem 'cancancan', '~> 3.1'
-gem 'faker', '~> 2.11'
 # A library of icons.  Read more: https://fontawesome.com/
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 
@@ -37,6 +36,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
+  gem 'faker', '~> 2.11'
+  gem 'letter_opener'
 end
 
 group :development do

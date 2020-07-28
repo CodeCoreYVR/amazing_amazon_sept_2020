@@ -20,6 +20,7 @@ class ProductsController < ApplicationController
     @product = Product.new product_params
     @product.user = @current_user
     if @product.save
+      ProductMailer.notify_product_owner(@product).deliver_now
       render(plain: "Created Product #{@product.inspect}")
     else
       render :new
