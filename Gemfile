@@ -23,6 +23,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan', '~> 3.1'
 # A library of icons.  Read more: https://fontawesome.com/
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
+gem 'delayed_job_active_record'
+gem 'delayed_job_web'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
