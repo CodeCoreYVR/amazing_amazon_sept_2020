@@ -10,6 +10,8 @@
   </head>
 
   <body>
+    <%# loading a partial located at views/shared/navbar %>
+    <%# by convention partials are decorated with an _ %>
     <%= render 'shared/navbar' %>
     <div class='container'>
       <%= yield %>
