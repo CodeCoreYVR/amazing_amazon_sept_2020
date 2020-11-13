@@ -14,7 +14,7 @@ Product.destroy_all()
   Product.create({
     title: Faker::Commerce.product_name,
     description: Faker::Hacker.say_something_smart,
-    price: Faker::Commerce.price(range: 0..10_000.00),
+    price: Faker::Commerce.price(range: 1..10_000.00),
     created_at: created_at,
     updated_at: created_at,
   })
