@@ -9,6 +9,8 @@
 Product.destroy_all()
 
 1000.times do
+  # Fake is ruby module that we installed as a gem
+  # Access the Date class inside the module Faker 
   created_at = Faker::Date.backward(days: 365 * 5)
 
   Product.create({
