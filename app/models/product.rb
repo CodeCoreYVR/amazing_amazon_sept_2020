@@ -42,6 +42,23 @@ class Product < ApplicationRecord
   validates :price, numericality: { greater_than: 0 }
   validates :description, presence: true, length: { minimum: 10 }
 
+  # Return an active record relation with all the titles and descriptions that contain the search term
+  def self.search search_term
+    # If the search term is a user input, avoid using this in production because of SQL injection
+    where(["title ILIKE ?", "%#{search_term}%"])
+      .or(where(["description ILIKE ?", "%#{search_term}%"]))
+  end
+
+  def self.search_challenge search_term
+    where("title ILIKE '%#{search_term}%' OR description ILIKE '%#{search_term}%'")
+      .order(
+        # Order first the products where the title contain the word
+        "title ILIKE '%#{search_term}%' DESC",
+        # Then if a term is in the product's title and description, order them first
+        "description ILIKE '%#{search_term}%' DESC",
+      )
+  end
+
   private
 
   # It's best practice to declare our custom callback methods as private, if left public then 
