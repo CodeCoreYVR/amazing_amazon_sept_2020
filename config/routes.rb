@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   #bill splitter
   get '/bill_splitter', to: 'bill_splitter#new'
   post '/calculate_split', to: 'bill_splitter#create'
+
+  # RESTful Products
+  get '/products/new', to: 'products#new' #new
+  post '/products', to: 'products#create'
 end

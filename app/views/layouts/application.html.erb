@@ -13,6 +13,7 @@
     <%# loading a partial located at views/shared/navbar %>
     <%# by convention partials are decorated with an _ %>
     <%= render 'shared/navbar' %>
+    <%= flash[:notice] %>
     <div class='container'>
       <%= yield %>
     </div>
