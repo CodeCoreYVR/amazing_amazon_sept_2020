@@ -14,5 +14,5 @@ Rails.application.routes.draw do
   # post '/products', to: 'products#create' #create
   # get '/products/:id', to: 'products#show', as: 'product' #show
   
-  resources :products, only: [:new, :create, :show, :index]
+  resources :products, only: [:new, :create, :show, :index, :destroy]
 end

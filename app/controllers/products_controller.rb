@@ -21,4 +21,15 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find params[:id]
   end
+
+  def destroy
+    @product = Product.find params[:id]
+    if @product.destroy
+      flash[:notice] = 'Destroyed Product!'
+      redirect_to products_path
+    else
+      flash[:notice] = 'Failed to destroy product...'
+      redirect_to product_path(@product)
+    end
+  end
 end
