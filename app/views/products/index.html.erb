@@ -1,0 +1,9 @@
+<h1>Product Index Page</h1>
+
+<ul>
+  <% @products.each do |p| %>
+    <li>
+      <%= link_to p.title, p %>
+    </li>
+  <% end %>
+</ul>
