@@ -8,6 +8,8 @@
   </ul>
 <% end %>
 
+<%# the local: true flag is used to prevent an AJAX request when the form is submmited %>
+<%# AJAX requests are HTTP requests using Javascript. They behave a little differently so we don't want to use it%>
 <%= form_with model: @product, local: true do |f| %>
   <div>
     <%= f.label :title %>
