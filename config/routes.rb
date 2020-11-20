@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   # RESTful Product Routes
   get '/products/new', to: 'products#new', as: :new_product
   post '/products', to: 'products#create'
+  get 'products/:id', to: 'products#show' # product_path(<id>)
 end
