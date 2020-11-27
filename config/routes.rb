@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   post '/calculate_split', to: 'bill_splitter#create'
 
   # RESTful Product Routes
-  get '/products/new', to: 'products#new', as: :new_product
-  post '/products', to: 'products#create'
-  get 'products/:id', to: 'products#show' # product_path(<id>)
+  # get '/products/new', to: 'products#new', as: :new_product
+  # post '/products', to: 'products#create'
+  # get 'products', to: 'products#index'
+  # get 'products/:id', to: 'products#show' # product_path(<id>)
+  resources :products do 
+    resources :reviews
+  end
 end

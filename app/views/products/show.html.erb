@@ -17,4 +17,33 @@
   </div>
   <hr/>
   <p class='shadow-none p-3 rounded'><%= @product.description %></p>
+
+<p class='text-muted'>Leave a Review :D</p>
+<div class='shadow-sm p-3 mb-5 bg-white rounded'>
+  <%# 
+    @product is the instance of the product on this for 
+    @review is a new review e.g. Review.new
+    # local: true will prevent the form from subitting the data using ajax
+  %>
+  <%= form_with model: [@product, @review],  local: true do |f| %>
+    <div class='form-group'>
+      <%= f.label :rating %>
+      <%# 
+        first argument is the name attribute of the input 
+        second is the argument for the dropdown menu
+      %>
+      <%= f.select(:rating, options_for_select(1..5), class: 'form-control' )%>
+    </div>
+    <div class='form-group'>
+      <%= f.label :body %>
+      <%= f.text_area(:body, class: 'form-control', placeholder: 'Your thoughts here' )%>
+    </div>
+    <%= f.submit class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+  <% @reviews.each do |review| %>
+    <p><%= review.body %></p>
+    <p><%= review.rating %></p>
+  <% end %>
 </div> 

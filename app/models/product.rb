@@ -9,6 +9,12 @@ class Product < ApplicationRecord
   # only invoke this callback if the current environment is development.
   before_destroy :log_delete_details, unless: Proc.new { !Rails.env.development? }
 
+  # creates a method for us on the instance @product.reviews 
+  # which will return an active record relation for all reviews 
+  # that are associated to this product instance
+  # "reviews" needs to be plural because a product can have many reviews
+  has_many :reviews
+
   validates(:title,
     presence: true,
     uniqueness: true,

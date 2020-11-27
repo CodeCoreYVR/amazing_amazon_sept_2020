@@ -8,21 +8,32 @@
 
 NUM_OF_USERS = 20
 NUM_OF_PRODUCTS = 1000
+NUM_OF_REVIEWS = 10
 
+Review.destroy_all()
 Product.destroy_all()
 User.destroy_all()
 
 NUM_OF_PRODUCTS.times do
   created_at = Faker::Date.backward(365)
-  Product.create({
+  product = Product.create({
     title: Faker::Cannabis.strain,
     description: Faker::Cannabis.health_benefit,
     price: rand(100_000),
     created_at: created_at,
     updated_at: created_at
   })
+
+  NUM_OF_REVIEWS.times do 
+    Review.create({
+      rating: rand(1..5), 
+      body: Faker::Hacker.say_something_smart, 
+      product: product
+    })
+  end
 end
 
+puts Cowsay.say("Created #{NUM_OF_REVIEWS} reviews!", :frog)
 puts Cowsay.say("Created #{NUM_OF_PRODUCTS} products!", :sheep)
 
 NUM_OF_USERS.times do
