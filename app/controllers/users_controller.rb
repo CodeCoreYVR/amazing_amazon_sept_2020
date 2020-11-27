@@ -34,8 +34,6 @@ class UsersController < ApplicationController
   end
 
   def password_update
-    puts "=========================="
-    puts params[:user][:current_password]
     if @user&.authenticate(params[:user][:current_password])
       if @user.update user_params
         # if we use new_password and new_password_confirmation
