@@ -26,5 +26,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:create, :destroy]
   end
 
+  get '/sign_up', to: "users#new"
+  resources :users, only: [:create, :edit, :update, :destroy]
 
 end
