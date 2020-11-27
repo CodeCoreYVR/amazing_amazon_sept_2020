@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:edit, :update]
-  before_action :find_user, only: [:edit, :update]
-  before_action :authorize, only: [:edit, :update] 
+  before_action :authenticate_user!, only: [:edit, :update, :password_edit, :password_update]
+  before_action :find_user, only: [:edit, :update, :password_edit, :password_update]
+  before_action :authorize, only: [:edit, :update, :password_edit, :password_update] 
 
   def new
     @user = User.new
@@ -30,6 +30,32 @@ class UsersController < ApplicationController
     end
   end
 
+  def password_edit
+  end
+
+  def password_update
+    puts "=========================="
+    puts params[:user][:current_password]
+    if @user&.authenticate(params[:user][:current_password])
+      if @user.update user_params
+        # if we use new_password and new_password_confirmation
+        # password: params[:user][:new_password], 
+        # password_confirmation: params[:user][:new_password_confirmation]
+        
+        flash[:success] = "Password updated!"
+        redirect_to root_path
+      else
+        flash[:danger] = @user.errors.full_messages.join(", ")
+        redirect_to edit_password_path(@user)
+      end
+    else
+      flash[:danger] = "You've entered an invalid current password"
+      redirect_to edit_password_path(@user)
+    end
+
+    # if @user.update
+  end
+
   private
 
   def user_params
@@ -38,7 +64,7 @@ class UsersController < ApplicationController
       :last_name,
       :email,
       :password,
-      :password_confimation
+      :password_confirmation
     )
   end
 
