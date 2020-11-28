@@ -7,13 +7,15 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    # @product = "Something else"
   end
 
   def create
     @product = Product.new product_params
     @product.user = @current_user
     if @product.save
-      render(plain: "Created Product #{@product.inspect}")
+      # render(plain: "Created Product #{@product.inspect}")
+      redirect_to product_path(@product)
     else
       render :new
     end

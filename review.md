@@ -67,3 +67,15 @@ This will create routes that perform CRUD on a single resource. There won't inde
 * DELETE /session
   * Sets user_id in session to nil
   * Redirects to root page
+
+# Testing CRUD
+1. Gems to install:
+  * `rspec-rails` -> testing library 
+  * `rails-controller-testing` -> adds `render_template`
+  * `factory_bot` -> generate some fake objects 
+2. Run `rails g rspec:install`
+3. Bug when running `rails g rspec:controller products`
+  * Change sepc file from `products_request_spec.rb` to `products_controller_spec.rb`
+  * Change type to `:controller`
+  * Change argument passed to `Rspec.describe` from string to the class of the controller e.g. `ProductController`
+4. Write tests! Refer to `products_controller_spec.rb` for notes
