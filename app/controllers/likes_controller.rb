@@ -12,6 +12,8 @@ class LikesController < ApplicationController
         else
             flash[:warning] = like.errors.full_messages.join(', ')
         end
+        
+        redirect_to review.product
     end
 
     def destroy
