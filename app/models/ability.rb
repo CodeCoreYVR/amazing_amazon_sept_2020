@@ -40,5 +40,13 @@ class Ability
     can :crud, Review do |review|
       review.user == user
     end
+
+    can :like, Review do |review|
+      review.user != user
+    end
+
+    can :destroy, Like do |like|
+      like.user == user
+    end
   end
 end
