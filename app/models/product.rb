@@ -30,6 +30,10 @@ class Product < ApplicationRecord
 
   has_many :reviews, -> { order('updated_at DESC') }, dependent: :destroy 
 
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
+
+
   # scope(name, body, &block) is a method that will add a class method for retrieving records
   # https://api.rubyonrails.org/classes/ActiveRecord/Scoping/Named/ClassMethods.html#method-i-scope
   # in ruby & rails docks &block means the method accepts a lambda.
@@ -49,6 +53,14 @@ class Product < ApplicationRecord
   def self.get_paginated(search, sort_by_col, current_page, per_page_count)
     where("title ILIKE ? OR description ILIKE ?", "%#{search}%", "%#{search}%").order(Hash[sort_by_col, :desc]).limit(per_page_count).offset(current_page * per_page_count) 
   end
+def tag_names
+  self.tags.map(&:name).join(', ')
+end
+def tag_names=(rhs)
+  self.tags=rhs.strip.split(/\s*,\s*/).map do|tag_name|
+    Tag.find_or_initialize_by(name: tag_name)
+  end
+end
 
   private
 

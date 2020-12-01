@@ -12,9 +12,12 @@ NUM_OF_PRODUCTS = 1000
 NUM_OF_REVIEWS = 2
 PASSWORD = 'supersecret'
 
-Review.destroy_all()
-Product.destroy_all()
-User.destroy_all()
+Review.delete_all()
+Product.delete_all()
+User.delete_all()
+Tagging.delete_all
+Tag.delete_all
+
 
 super_user = User.create(
   first_name: 'jon',
@@ -35,7 +38,13 @@ NUM_OF_USERS.times do |x|
 end
 
 users = User.all
-
+NUM_TAGS=20
+NUM_TAGS.times do
+  Tag.create(
+    name: Faker::Vehicle.make
+  )
+end
+tags=Tag.all
 NUM_OF_PRODUCTS.times do |x|
   created_at = Faker::Date.backward(days: 365)
   product = Product.create({
@@ -60,6 +69,12 @@ end
 products = Product.all
 reviews = Review.all
 
+products.each do |p|
+  p.tags=tags.shuffle.slice(0,rand(tags.count))
+end
+
 puts Cowsay.say("Created #{products.count} products with #{NUM_OF_REVIEWS} reviews each!", :sheep)
 puts Cowsay.say("Created #{users.count}  users!", :turtle)
+
+puts Cowsay.say("Created #{tags.count}  tags!", :sheep)
 
