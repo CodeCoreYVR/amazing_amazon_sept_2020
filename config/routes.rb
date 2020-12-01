@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   #  patch '/products/:id', to: 'products#update'
 
   resources :products do
-    resources :reviews, only: [:create, :destroy]
+    resources :reviews,shallow: true, only: [:create, :destroy] do
+      resources :votes, only: [:create, :update, :destroy]
+    end
   end
 
   resources :users, only: [:new, :create]

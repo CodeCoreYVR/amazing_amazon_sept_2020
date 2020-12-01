@@ -17,6 +17,8 @@ Product.delete_all()
 User.delete_all()
 Tagging.delete_all
 Tag.delete_all
+Vote.delete_all
+
 
 
 super_user = User.create(
@@ -56,12 +58,19 @@ NUM_OF_PRODUCTS.times do |x|
     updated_at: created_at
   })
   NUM_OF_REVIEWS.times do
-    Review.create({
+    r=Review.create({
       rating: rand(1..5),
       body: Faker::Hacker.say_something_smart,
       product: product,
       user: users.sample
     })
+    users.shuffle.slice(0..rand(users.count)).each do |user|
+      Vote.create(
+        review: r,
+        user: user,
+        is_up: [true, false].sample
+      )
+    end
   end
   Stdout.progress_bar(NUM_OF_PRODUCTS, x, "█") { "Creating Products with Reviews" }
 end
@@ -77,4 +86,5 @@ puts Cowsay.say("Created #{products.count} products with #{NUM_OF_REVIEWS} revie
 puts Cowsay.say("Created #{users.count}  users!", :turtle)
 
 puts Cowsay.say("Created #{tags.count}  tags!", :sheep)
+puts Cowsay.say("Created #{Vote.count}  tags!", :crab)
 

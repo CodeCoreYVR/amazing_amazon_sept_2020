@@ -5,7 +5,8 @@ class User < ApplicationRecord
   has_many :products
   has_many :reviews
 
-  
+  has_many :votes, dependent: :destroy
+  has_many :voted_reviews, through: :votes, source: :review
 
   has_many :news_articles, dependent: :nullify
 

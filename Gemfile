@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 gem 'cancancan', '~> 3.1'
 gem 'faker', '~> 2.11'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
